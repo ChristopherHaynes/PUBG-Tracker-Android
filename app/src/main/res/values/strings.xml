@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WXC PUBG Tracker</string>
+    <string name="title_home">General</string>
+    <string name="title_dashboard">Last WXC</string>
+    <string name="title_notifications">Leaderboards</string>
+    <string name="gamertag_input">Gamertag</string>
+    <string name="gamertag_send">Send</string>
+</resources>

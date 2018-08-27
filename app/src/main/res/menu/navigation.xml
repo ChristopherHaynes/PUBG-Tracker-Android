@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_player_stats"
+        android:icon="@drawable/ic_directions_run_black_24dp"
+        android:title="Player Stats" />
+
+    <item
+        android:id="@+id/navigation_match_stats"
+        android:icon="@drawable/ic_flight_black_24dp"
+        android:title="Match Stats" />
+
+    <item
+        android:id="@+id/navigation_wxc"
+        android:icon="@drawable/ic_videogame_asset_black_24dp"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_leaderboards"
+        android:icon="@drawable/ic_whatshot_black_24dp"
+        android:title="@string/title_notifications" />
+
+</menu>

@@ -1,0 +1,1111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaderboardsSpinner">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+
+                android:id="@+id/tableLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/cornerTile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/applepieHeading"
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Applepie2"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/heychunkHeading"
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="HeyChunk"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/jellyfilledfunHeading"
+                        android:layout_width="57dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="JellyFilled"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/jpargyle2Heading"
+                        android:layout_width="59dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="JP Argyle2"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/killsRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Kills"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/killsColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/killsColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/killsColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/killsColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/kdRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="K/D"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/kdColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/kdColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/kdColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/kdColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/damageDealtRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Damage"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/damageDealtColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/damageDealtColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/damageDealtColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/damageDealtColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/longestKillRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Longest Kill"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/longestKillColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/longestKillColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/longestKillColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/longestKillColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/mostKillsRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Most Kills"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/mostKillsColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/mostKillsColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/mostKillsColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/mostKillsColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/headshotPercentRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Headshots"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/headshotsPercentColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/headshotsPercentColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/headshotsPercentColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/headshotsPercentColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/avgSurvivalRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Survived"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/avgSurvivedColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/avgSurvivedColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/avgSurvivedColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/avgSurvivedColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/roadKillsRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Road Kills"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/roadKillsColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/roadKillsColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/roadKillsColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/roadKillsColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/avgAssistsRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Assists"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/assistsColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/assistsColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/assistsColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/assistsColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/avgDBNOsRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. DBNOs"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/avgDBNOsColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/avgDBNOsColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/avgDBNOsColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/avgDBNOsColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/teamKillsRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Team Kills"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/teamKillsColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/teamKillsColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/teamKillsColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/teamKillsColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/winsPercentRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Wins %"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/winsPercentColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/winsPercentColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/winsPercentColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/winsPercentColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/top10sPercentRow"
+                        android:layout_width="43dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Top 10s %"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/top10sPercentColumn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/top10sPercentColumn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/top10sPercentColumn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/top10sPercentColumn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/playerStatsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:text="Leaderboard"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <Spinner
+        android:id="@+id/leaderboardsSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorOrangeDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
