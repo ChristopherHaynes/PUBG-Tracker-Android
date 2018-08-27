@@ -1,6 +1,7 @@
 package wxc.pubgtracker;
 
 import android.os.Bundle;
+import android.service.autofill.FieldClassification;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -46,7 +47,92 @@ public class WXCFragment extends Fragment {
         // Set the medals
         SetMedals(view);
 
+        //Set the team stats
+        SetTeamStats(view);
+
         return view;
+    }
+
+    public void SetTeamStats (View view) {
+
+        // Define local references to the WXC team stats
+        MatchModel.Participant apple = wxcPlayerStats.get(0).getParticipantList().get(0);
+        MatchModel.Participant chunk = wxcPlayerStats.get(1).getParticipantList().get(0);
+        MatchModel.Participant jelly = wxcPlayerStats.get(2).getParticipantList().get(0);
+        MatchModel.Participant jp = wxcPlayerStats.get(3).getParticipantList().get(0);
+
+        // Gather all the text views for the team stats
+        TextView killsText = view.getRootView().findViewById(R.id.killsWXCValue);
+        TextView bestPositionText = view.getRootView().findViewById(R.id.bestResultValue);
+        TextView teamKDText = view.getRootView().findViewById(R.id.teamKDValue);
+
+        TextView avgDamageText = view.getRootView().findViewById(R.id.avgDamageWXCValue);
+        TextView headshotText = view.getRootView().findViewById(R.id.headshotsWXCValue);
+
+        TextView teamKillsText = view.getRootView().findViewById(R.id.teamKillsWXCValue);
+        TextView assitsText = view.getRootView().findViewById(R.id.assistsWXCValue);
+        TextView dbnosText = view.getRootView().findViewById(R.id.dbnosWXCValue);
+
+        TextView roadKillsText = view.getRootView().findViewById(R.id.roadKillsWXCValue);
+        TextView vehiclesDestroyedText = view.getRootView().findViewById(R.id.vehicleDestroysWXCValue);
+
+        TextView healsText = view.getRootView().findViewById(R.id.healsWXCValue);
+        TextView boostsText = view.getRootView().findViewById(R.id.boostsWXCValue);
+        TextView revivesText = view.getRootView().findViewById(R.id.revivesWXCValue);
+
+        TextView avgTimeSurvivedText = view.getRootView().findViewById(R.id.avgSurvivalWXCValue);
+        TextView avgWeaponsAcquiredText = view.getRootView().findViewById(R.id.avgWeaponsWXCValue);
+
+        TextView avgRanText = view.getRootView().findViewById(R.id.avgRanWXCValue);
+        TextView avgSwamText = view.getRootView().findViewById(R.id.avgSwamWXCValue);
+        TextView avgRodeText = view.getRootView().findViewById(R.id.avgRodeWXCValue);
+
+        // Set the Team Header table
+        Integer totalWXCKills = apple.getKills() + chunk.getKills() + jelly.getKills() + jp.getKills();
+        killsText.setText(totalWXCKills.toString());
+        Integer bestResult = apple.getWinPlace();
+        switch (bestResult){
+            case 1:
+                bestPositionText.setBackgroundResource(R.color.colorGold);
+                break;
+            case 2:
+                bestPositionText.setBackgroundResource(R.color.colorSilver);
+                break;
+            case 3:
+                bestPositionText.setBackgroundResource(R.color.colorBronze);
+                break;
+            default:
+                bestPositionText.setBackgroundResource(R.color.colorPrimary);
+                break;
+        }
+        String bestPositionString = bestResult.toString();
+        switch(bestPositionString.substring(bestPositionString.length() - 1)){
+            case "1":
+                bestPositionString = bestPositionString + "st";
+                break;
+            case "2":
+                bestPositionString = bestPositionString + "nd";
+                break;
+            case "3":
+                bestPositionString = bestPositionString + "rd";
+                break;
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+            case "0":
+                bestPositionString = bestPositionString + "th";
+                break;
+            default:
+                break;
+        }
+        bestPositionText.setText(bestPositionString);
+
+        // Determine the team KD (number of matches player is stored in the day variable and multiplied by 4
+        Double teamKD = totalWXCKills / (wxcPlayerStats.get(0).getDay() * 4.0);
+        teamKDText.setText(teamKD.toString().substring(0, Math.min(teamKD.toString().length(), 4)));
     }
 
     public void CompileWXCStatsFromMatches() {
@@ -54,64 +140,75 @@ public class WXCFragment extends Fragment {
         // Make sure the manager is updated
         manager = MyProperties.getInstance().pubgManager;
 
+        // Match counter used for averages
+        Integer totalWXCMatches = 0;
+
         for (int i = 0; i < manager.players.size(); i++) {
             for (int j = 0; j < manager.players.get(i).getMatches().size(); j++) {
                 // Find all matches for the current player which took place on the last thursday and have all wxc members as participants
                 if (manager.players.get(i).getMatches().get(j).getDay() == 5 &&
                         manager.players.get(i).getMatches().get(j).getParticipantList().size() == 4) {
 
-                        // Set the date of this wxc
-                        if (wxcDate.equals("DD-MM-YYYY")) {
-                            wxcDate = manager.players.get(i).getMatches().get(j).getMatchDateTime();
+                    //Increment the match counter
+                    totalWXCMatches++;
 
-                            // Split the date and time, remove the formatting characters
-                            if (wxcDate.length() > 1) {
-                                String[] splitDateTime = wxcDate.split("T");
+                    // Set the date of this wxc
+                    if (wxcDate.equals("DD-MM-YYYY")) {
+                        wxcDate = manager.players.get(i).getMatches().get(j).getMatchDateTime();
 
-                                // Reorder the date to dd-mm-yyyy
-                                String[] splitDate = splitDateTime[0].split("-");
-                                wxcDate = splitDate[2] + "-" + splitDate[1] + "-" + splitDate[0];
-                            }
-                        }
+                        // Split the date and time, remove the formatting characters
+                        if (wxcDate.length() > 1) {
+                            String[] splitDateTime = wxcDate.split("T");
 
-                        //Create local reference type for the wxc participant
-                        MatchModel.Participant wxcPlayer = wxcPlayerStats.get(i).getParticipantList().get(0);
-                        Integer playerIndex = 0;
-                        for (int k = 0; k < manager.players.get(i).getMatches().get(j).getParticipantList().size(); k++) {
-                            if (manager.players.get(i).getMatches().get(j).getParticipantList().get(k).getGamertag().equals(manager.wxcGamertags.get(i))) {
-                                playerIndex = k;
-                            }
+                            // Reorder the date to dd-mm-yyyy
+                            String[] splitDate = splitDateTime[0].split("-");
+                            wxcDate = splitDate[2] + "-" + splitDate[1] + "-" + splitDate[0];
                         }
+                    }
 
-                        // Sum all the stats across the WXC matches
-                        wxcPlayer.setAssists(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getAssists() + wxcPlayer.getAssists());
-                        wxcPlayer.setBoosts(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getBoosts() + wxcPlayer.getBoosts());
-                        wxcPlayer.setDBNOs(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getDBNOs() + wxcPlayer.getDBNOs());
-                        wxcPlayer.setDamageDealt(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getDamageDealt() + wxcPlayer.getDamageDealt());
-                        wxcPlayer.setHeadshotKills(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getHeadshotKills() + wxcPlayer.getHeadshotKills());
-                        wxcPlayer.setHeals(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getHeals() + wxcPlayer.getHeals());
-                        wxcPlayer.setKills(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKills() + wxcPlayer.getKills());
-                        wxcPlayer.setRevives(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRevives() + wxcPlayer.getRevives());
-                        wxcPlayer.setRideDistance(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRideDistance() + wxcPlayer.getRideDistance());
-                        wxcPlayer.setRoadKills(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRoadKills() + wxcPlayer.getRoadKills());
-                        wxcPlayer.setSwimDistance(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getSwimDistance() + wxcPlayer.getSwimDistance());
-                        wxcPlayer.setTeamKills(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getTeamKills() + wxcPlayer.getTeamKills());
-                        wxcPlayer.setTimeSurvived(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getTimeSurvived() + wxcPlayer.getTimeSurvived());
-                        wxcPlayer.setVehiclesDestroyed(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getVehiclesDestroyed() + wxcPlayer.getVehiclesDestroyed());
-                        wxcPlayer.setWalkDistance(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWalkDistance() + wxcPlayer.getWalkDistance());
-                        wxcPlayer.setWeaponsAcquired(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWeaponsAcquired() + wxcPlayer.getWeaponsAcquired());
-                        if (wxcPlayer.getKillStreak() <= manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak()) {
-                            wxcPlayer.setKillStreak(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak());
+                    //Create local reference type for the wxc participant
+                    MatchModel.Participant wxcPlayer = wxcPlayerStats.get(i).getParticipantList().get(0);
+                    Integer playerIndex = 0;
+                    for (int k = 0; k < manager.players.get(i).getMatches().get(j).getParticipantList().size(); k++) {
+                        if (manager.players.get(i).getMatches().get(j).getParticipantList().get(k).getGamertag().equals(manager.wxcGamertags.get(i))) {
+                            playerIndex = k;
                         }
-                        if (wxcPlayer.getLongestKill() <= manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill()) {
-                            wxcPlayer.setLongestKill(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill());
-                        }
+                    }
+
+                    // Sum all the stats across the WXC matches
+                    wxcPlayer.setAssists(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getAssists() + wxcPlayer.getAssists());
+                    wxcPlayer.setBoosts(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getBoosts() + wxcPlayer.getBoosts());
+                    wxcPlayer.setDBNOs(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getDBNOs() + wxcPlayer.getDBNOs());
+                    wxcPlayer.setDamageDealt(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getDamageDealt() + wxcPlayer.getDamageDealt());
+                    wxcPlayer.setHeadshotKills(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getHeadshotKills() + wxcPlayer.getHeadshotKills());
+                    wxcPlayer.setHeals(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getHeals() + wxcPlayer.getHeals());
+                    wxcPlayer.setKills(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKills() + wxcPlayer.getKills());
+                    wxcPlayer.setRevives(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRevives() + wxcPlayer.getRevives());
+                    wxcPlayer.setRideDistance(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRideDistance() + wxcPlayer.getRideDistance());
+                    wxcPlayer.setRoadKills(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRoadKills() + wxcPlayer.getRoadKills());
+                    wxcPlayer.setSwimDistance(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getSwimDistance() + wxcPlayer.getSwimDistance());
+                    wxcPlayer.setTeamKills(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getTeamKills() + wxcPlayer.getTeamKills());
+                    wxcPlayer.setTimeSurvived(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getTimeSurvived() + wxcPlayer.getTimeSurvived());
+                    wxcPlayer.setVehiclesDestroyed(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getVehiclesDestroyed() + wxcPlayer.getVehiclesDestroyed());
+                    wxcPlayer.setWalkDistance(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWalkDistance() + wxcPlayer.getWalkDistance());
+                    wxcPlayer.setWeaponsAcquired(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWeaponsAcquired() + wxcPlayer.getWeaponsAcquired());
+                    if (wxcPlayer.getKillStreak() <= manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak()) {
+                        wxcPlayer.setKillStreak(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak());
+                    }
+                    if (wxcPlayer.getLongestKill() <= manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill()) {
+                        wxcPlayer.setLongestKill(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill());
+                    }
+                    if (wxcPlayer.getWinPlace() > manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWinPlace()) {
+                        wxcPlayer.setWinPlace(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWinPlace());
+                    }
                 }
 
                 // Break if another day is discovered when wxc stats, stored for this player, are not null
                 if (manager.players.get(i).getMatches().get(j).getDay() != 5 &&
                         wxcPlayerStats.get(i).getParticipantList().get(0).getKills() != -1) {
                     wxcPlayerStats.get(i).getParticipantList().get(0).setKills(wxcPlayerStats.get(i).getParticipantList().get(0).getKills() + 1);
+                    // Store the total number of matches in the "Day" integer as it is not used in for the WXC model
+                    wxcPlayerStats.get(i).setDay(totalWXCMatches);
                     break;
                 }
             }

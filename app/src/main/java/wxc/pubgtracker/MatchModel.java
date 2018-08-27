@@ -77,6 +77,7 @@ public class MatchModel {
     public void addParticipant() {
         Participant participant = new Participant();
         participant.setKills(-1);
+        participant.setWinPlace(100);
         participantList.add(participant);
     }
 
