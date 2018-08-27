@@ -1,0 +1,1155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/gameModeSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorOrangeDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/gamertagSpinner"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/gamertagSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorOrangeDark"
+        app:layout_constraintEnd_toStartOf="@+id/gameModeSpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameModeSpinner">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="576dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/avgWalkText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Walking"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/avgRideText"
+                        android:layout_width="107dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Riding"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/avgWalkValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/avgRideValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="520dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/longestSurvivedText"
+                        android:layout_width="46dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Longest Survived"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/avgSurvivedText"
+                        android:layout_width="47dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Survived"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/longestSurvivedValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/avgSurvivedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="64dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/winsText"
+                        android:layout_width="38dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Wins"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/top10sText"
+                        android:layout_width="49dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Top 10s"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lossesText"
+                        android:layout_width="42dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Losses"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/winsValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/top10sValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/lossesValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="312dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/roadKillsText"
+                        android:layout_width="38dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Road Kills"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/teamKillsText"
+                        android:layout_width="49dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Team Kills"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/longestKillText"
+                        android:layout_width="42dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Longest Kill"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/roadKillsValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/teamKillsValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/longestKillValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="256dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/killstreakText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Max Killstreak"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mostKillsText"
+                        android:layout_width="121dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Most Kills"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/maxKillstreakValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/mostKillsValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/winPointsText"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Win Points"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/killPointsText"
+                        android:layout_width="49dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Kill Points"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/winPointsValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/killPointsValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP7"
+                android:layout_width="0dp"
+                android:layout_height="53dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="444dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/healsText"
+                        android:layout_width="38dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Heals"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/boostsText"
+                        android:layout_width="49dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Boosts"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/revivesTest"
+                        android:layout_width="42dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Revives"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/avgHealsValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/avgBoostsValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/revivesValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="144dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/killsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Kills"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/deathsText"
+                        android:layout_width="49dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Deaths "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/kdText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="K / D"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/killsValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/deathsValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/kdValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="200dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/headshotsText"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Headshots"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/avgDamageText"
+                        android:layout_width="49dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Avg. Damage"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/headshotsValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/averageDamageValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
+                android:id="@+id/tableLayoutP10"
+                android:layout_width="0dp"
+                android:layout_height="53dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="392dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="0,1,2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/suicidesText"
+                        android:layout_width="38dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Suicides"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/assistsText"
+                        android:layout_width="49dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Assists"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dbnosText"
+                        android:layout_width="42dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="DBNOs"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight">
+
+                    <TextView
+                        android:id="@+id/suicidesValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/assistsValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/dbnosValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/playerStatsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:text="Player Stats"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
