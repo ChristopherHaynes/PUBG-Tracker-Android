@@ -45,10 +45,14 @@ public class WXCFragment extends Fragment {
         wxcDateText.setText("WXC Date: " + wxcDate);
 
         // Set the medals
-        SetMedals(view);
+        if (wxcPlayerStats.size() == 4) {
+            SetMedals(view);
+        }
 
         //Set the team stats
-        SetTeamStats(view);
+        if (wxcPlayerStats.size() == 4) {
+            SetTeamStats(view);
+        }
 
         return view;
     }
@@ -136,7 +140,7 @@ public class WXCFragment extends Fragment {
 
         // Set the Damage table
         Double averageDamage = (apple.getDamageDealt() + chunk.getDamageDealt() + jelly.getDamageDealt() + jp.getDamageDealt()) / (wxcPlayerStats.get(0).getDay() * 4.0);
-        avgDamageText.setText(averageDamage.toString().substring(0, Math.min(teamKD.toString().length(), 6)));
+        avgDamageText.setText(averageDamage.toString().substring(0, Math.min(averageDamage.toString().length(), 6)));
 
         Integer totalHeadshots = apple.getHeadshotKills() + chunk.getHeadshotKills() + jelly.getHeadshotKills() + jp.getHeadshotKills();
         headshotText.setText(totalHeadshots.toString());
@@ -204,7 +208,8 @@ public class WXCFragment extends Fragment {
         for (int i = 0; i < manager.players.size(); i++) {
             for (int j = 0; j < manager.players.get(i).getMatches().size(); j++) {
                 // Find all matches for the current player which took place on the last thursday and have all wxc members as participants
-                if (manager.players.get(i).getMatches().get(j).getDay() == 5 &&
+                if (manager.players.get(i).getMatches().get(j).getDay() == null) { break; }
+                if (manager.players.get(i).getMatches().get(j).getDay().equals(5)  &&
                         manager.players.get(i).getMatches().get(j).getParticipantList().size() == 4) {
 
                     //Increment the match counter
@@ -269,14 +274,14 @@ public class WXCFragment extends Fragment {
                 if (manager.players.get(i).getMatches().get(j).getDay() != 5 &&
                         wxcPlayerStats.get(i).getParticipantList().get(0).getKills() != -1) {
                     wxcPlayerStats.get(i).getParticipantList().get(0).setKills(wxcPlayerStats.get(i).getParticipantList().get(0).getKills() + 1);
-                    // Store the total number of matches in the "Day" integer as it is not used in for the WXC model
+                    // Store the total number of matches in the "Day" integer as it is not used in the WXC model
                     wxcPlayerStats.get(i).setDay(totalWXCMatches);
                     break;
                 }
             }
         }
 
-        // Store the stats in the PUBG manager
+        // Store the stats in the PUBG Manager
         manager.wxcStats = wxcPlayerStats;
     }
 
