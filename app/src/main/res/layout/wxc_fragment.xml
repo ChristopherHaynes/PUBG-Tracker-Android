@@ -1160,7 +1160,8 @@
                         android:text="0"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/colorWhite"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/teamKDValue"

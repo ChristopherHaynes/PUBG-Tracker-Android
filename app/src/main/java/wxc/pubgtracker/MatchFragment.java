@@ -143,8 +143,6 @@ public class MatchFragment extends Fragment {
                         // Set the Placing table
                         Integer winPlace = stats.getParticipantList().get(j).getWinPlace();
                         Integer killPlace = stats.getParticipantList().get(j).getKillPlace();
-                        winPlaceValue.setText(winPlace.toString());
-                        killPlaceValue.setText(killPlace.toString());
                         switch (winPlace){
                             case 1:
                                 winPlaceValue.setBackgroundResource(R.color.colorGold);
@@ -159,7 +157,30 @@ public class MatchFragment extends Fragment {
                                 winPlaceValue.setBackgroundResource(R.color.colorPrimary);
                                 break;
                         }
-                        switch (killPlace){
+                        String winPlaceString = winPlace.toString();
+                        switch(winPlaceString.substring(winPlaceString.length() - 1)) {
+                            case "1":
+                                winPlaceString = winPlaceString + "st";
+                                break;
+                            case "2":
+                                winPlaceString = winPlaceString + "nd";
+                                break;
+                            case "3":
+                                winPlaceString = winPlaceString + "rd";
+                                break;
+                            case "4":
+                            case "5":
+                            case "6":
+                            case "7":
+                            case "8":
+                            case "9":
+                            case "0":
+                                winPlaceString = winPlaceString + "th";
+                                break;
+                            default:
+                                break;
+                        }
+                        switch (killPlace) {
                             case 1:
                                 killPlaceValue.setBackgroundResource(R.color.colorGold);
                                 break;
@@ -173,6 +194,31 @@ public class MatchFragment extends Fragment {
                                 killPlaceValue.setBackgroundResource(R.color.colorPrimary);
                                 break;
                         }
+                        String killPlaceString = killPlace.toString();
+                        switch(killPlaceString.substring(killPlaceString.length() - 1)) {
+                            case "1":
+                                killPlaceString = killPlaceString + "st";
+                                break;
+                            case "2":
+                                killPlaceString = killPlaceString + "nd";
+                                break;
+                            case "3":
+                                killPlaceString = killPlaceString + "rd";
+                                break;
+                            case "4":
+                            case "5":
+                            case "6":
+                            case "7":
+                            case "8":
+                            case "9":
+                            case "0":
+                                killPlaceString = killPlaceString + "th";
+                                break;
+                            default:
+                                break;
+                        }
+                        winPlaceValue.setText(winPlaceString);
+                        killPlaceValue.setText(killPlaceString);
 
                         // Set the Points table
                         winPointsValue.setText(Integer.toString(stats.getParticipantList().get(j).getWinPoints()));

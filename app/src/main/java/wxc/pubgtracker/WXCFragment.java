@@ -250,14 +250,18 @@ public class WXCFragment extends Fragment {
                     wxcPlayer.setVehiclesDestroyed(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getVehiclesDestroyed() + wxcPlayer.getVehiclesDestroyed());
                     wxcPlayer.setWalkDistance(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWalkDistance() + wxcPlayer.getWalkDistance());
                     wxcPlayer.setWeaponsAcquired(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWeaponsAcquired() + wxcPlayer.getWeaponsAcquired());
-                    if (wxcPlayer.getKillStreak() <= manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak()) {
+
+                    if (wxcPlayer.getKillStreak() < manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak()) {
                         wxcPlayer.setKillStreak(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak());
                     }
-                    if (wxcPlayer.getLongestKill() <= manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill()) {
+                    if (wxcPlayer.getLongestKill() < manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill()) {
                         wxcPlayer.setLongestKill(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill());
                     }
                     if (wxcPlayer.getWinPlace() > manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWinPlace()) {
                         wxcPlayer.setWinPlace(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWinPlace());
+                    }
+                    if (wxcPlayer.getKillPlace() < manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKills()) {
+                        wxcPlayer.setKillPlace(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKills());
                     }
                 }
 
@@ -271,6 +275,9 @@ public class WXCFragment extends Fragment {
                 }
             }
         }
+
+        // Store the stats in the PUBG manager
+        manager.wxcStats = wxcPlayerStats;
     }
 
     private void SetMedals(View view) {
