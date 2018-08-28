@@ -81,7 +81,7 @@ public class WXCFragment extends Fragment {
         TextView revivesText = view.getRootView().findViewById(R.id.revivesWXCValue);
 
         TextView avgTimeSurvivedText = view.getRootView().findViewById(R.id.avgSurvivalWXCValue);
-        TextView avgWeaponsAcquiredText = view.getRootView().findViewById(R.id.avgWeaponsWXCValue);
+        TextView longestKillText = view.getRootView().findViewById(R.id.longestKillWXCValue);
 
         TextView avgRanText = view.getRootView().findViewById(R.id.avgRanWXCValue);
         TextView avgSwamText = view.getRootView().findViewById(R.id.avgSwamWXCValue);
@@ -133,6 +133,64 @@ public class WXCFragment extends Fragment {
         // Determine the team KD (number of matches player is stored in the day variable and multiplied by 4
         Double teamKD = totalWXCKills / (wxcPlayerStats.get(0).getDay() * 4.0);
         teamKDText.setText(teamKD.toString().substring(0, Math.min(teamKD.toString().length(), 4)));
+
+        // Set the Damage table
+        Double averageDamage = (apple.getDamageDealt() + chunk.getDamageDealt() + jelly.getDamageDealt() + jp.getDamageDealt()) / (wxcPlayerStats.get(0).getDay() * 4.0);
+        avgDamageText.setText(averageDamage.toString().substring(0, Math.min(teamKD.toString().length(), 6)));
+
+        Integer totalHeadshots = apple.getHeadshotKills() + chunk.getHeadshotKills() + jelly.getHeadshotKills() + jp.getHeadshotKills();
+        headshotText.setText(totalHeadshots.toString());
+
+        // Set Support table
+        Integer totalTeamKills = apple.getTeamKills() + chunk.getTeamKills() + jelly.getTeamKills() + jp.getTeamKills();
+        teamKillsText.setText(totalTeamKills.toString());
+
+        Integer totalAssists = apple.getAssists() + chunk.getAssists() + jelly.getAssists() + jp.getAssists();
+        assitsText.setText(totalAssists.toString());
+
+        Integer totalDBNOs = apple.getDBNOs() + chunk.getDBNOs() + jelly.getDBNOs() + jp.getDBNOs();
+        dbnosText.setText(totalDBNOs.toString());
+
+        // Set the Vehicular table
+        Integer totalRoadKills = apple.getRoadKills() + chunk.getRoadKills() + jelly.getRoadKills() + jp.getRoadKills();
+        roadKillsText.setText(totalRoadKills.toString());
+
+        Integer totalVehiclesDestroyed = apple.getVehiclesDestroyed() + chunk.getVehiclesDestroyed() + jelly.getVehiclesDestroyed() +jp.getVehiclesDestroyed();
+        vehiclesDestroyedText.setText(totalVehiclesDestroyed.toString());
+
+        // Set the Healing table
+        Integer totalHeals = apple.getHeals() + chunk.getHeals() + jelly.getHeals() + jp.getHeals();
+        healsText.setText(totalHeals.toString());
+
+        Integer totalBoosts = apple.getBoosts() + chunk.getBoosts() + jelly.getBoosts() + jp.getBoosts();
+        boostsText.setText(totalBoosts.toString());
+
+        Integer totalRevives = apple.getRevives() + chunk.getRevives() + jelly.getRevives() + jp.getRevives();
+        revivesText.setText(totalRevives.toString());
+
+        // Set the Survival table
+        Double avgTeamSurvival = (apple.getTimeSurvived() + chunk.getTimeSurvived() + jelly.getTimeSurvived() + jp.getTimeSurvived()) / (wxcPlayerStats.get(0).getDay() * 4.0);
+        Integer minutes = (int) Math.round(avgTeamSurvival) / 60;
+        Integer seconds = (int) Math.round(avgTeamSurvival) % 60;
+        String secondsString = seconds.toString();
+        if (seconds < 10) { secondsString = "0" + secondsString; }
+        avgTimeSurvivedText.setText(minutes.toString() + ":" + secondsString);
+
+        Double teamLongestKill = apple.getLongestKill();
+        if (chunk.getLongestKill() > teamLongestKill) { teamLongestKill = chunk.getLongestKill(); }
+        if (jelly.getLongestKill() > teamLongestKill) { teamLongestKill = jelly.getLongestKill(); }
+        if (jp.getLongestKill() > teamLongestKill) { teamLongestKill = jp.getLongestKill(); }
+        longestKillText.setText(teamLongestKill.toString().substring(0, Math.min(teamLongestKill.toString().length(), 5)) + "m");
+
+        // Set the Distance Travelled table
+        Double avgRan = (apple.getWalkDistance() + chunk.getWalkDistance() + jelly.getWalkDistance() + jp.getWalkDistance()) / (wxcPlayerStats.get(0).getDay() * 4.0);
+        avgRanText.setText(avgRan.toString().substring(0, Math.min(avgRan.toString().length(), 6)) + "m");
+
+        Double avgSwam = (apple.getSwimDistance() + chunk.getSwimDistance() + jelly.getSwimDistance() + jp.getSwimDistance()) / (wxcPlayerStats.get(0).getDay() * 4.0);
+        avgSwamText.setText(avgSwam.toString().substring(0, Math.min(avgSwam.toString().length(), 4)) + "m");
+
+        Double avgRode = (apple.getRideDistance() + chunk.getRideDistance() + jelly.getRideDistance() + jp.getRideDistance()) / (wxcPlayerStats.get(0).getDay() * 4.0);
+        avgRodeText.setText(avgRode.toString().substring(0, Math.min(avgRode.toString().length(), 6)) + "m");
     }
 
     public void CompileWXCStatsFromMatches() {

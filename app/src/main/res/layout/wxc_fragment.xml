@@ -187,14 +187,14 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/avgWeaponsWXCText"
+                        android:id="@+id/longestKillWXCText"
                         android:layout_width="49dp"
                         android:layout_height="match_parent"
                         android:layout_column="1"
                         android:layout_margin="1dp"
                         android:background="@color/colorPrimary"
                         android:gravity="center"
-                        android:text="Avg. Weapons"
+                        android:text="Longest Kill"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp"
@@ -224,7 +224,7 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/avgWeaponsWXCValue"
+                        android:id="@+id/longestKillWXCValue"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_column="1"
