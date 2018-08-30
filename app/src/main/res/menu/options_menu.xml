@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/default_name"
+        android:title="@string/default_user" />
+
+    <item android:id="@+id/change_api_key"
+        android:title="@string/change_api_key" />
+
+</menu>

@@ -2,6 +2,7 @@ package wxc.pubgtracker;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,12 +33,33 @@ public class GeneralFragment extends Fragment {
 
         manager = MyProperties.getInstance().pubgManager;
 
+        // Set the default user to the saved user in the preferences
+        SharedPreferences preferences = getActivity().getSharedPreferences("userprefs", 0);
+        selectedGamertag = preferences.getString("defaultGamertag", "Applepie2");
+        Integer gamertagIndex = 0;
+        switch (selectedGamertag) {
+            case "Applepie2":
+            default:
+                gamertagIndex = 0;
+                break;
+            case "HeyChunk":
+                gamertagIndex = 1;
+                break;
+            case "JellyFilledFun":
+                gamertagIndex = 2;
+                break;
+            case "JP Argyle2":
+                gamertagIndex = 3;
+                break;
+        }
+
         // Set the gamertag spinner
         Spinner spinnerGT = view.findViewById(R.id.gamertagSpinner);
         ArrayAdapter<String> adapterGT = new ArrayAdapter(this.getContext(), R.layout.spinner_item, manager.wxcGamertags);
         adapterGT.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGT.setAdapter(adapterGT);
         spinnerGT.setOnItemSelectedListener(new GamertagSpinnerActivity());
+        spinnerGT.setSelection(gamertagIndex);
 
         // Set the game mode spinner
         Spinner spinnerGM = view.findViewById(R.id.gameModeSpinner);

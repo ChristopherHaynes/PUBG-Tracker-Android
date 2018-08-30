@@ -1,7 +1,6 @@
 package wxc.pubgtracker;
 
-import android.app.Activity;
-import android.content.Context;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,14 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import android.widget.TextView;
 
 public class LoadingFragment extends Fragment {
     private static final String TAG = "LoadingFragment";

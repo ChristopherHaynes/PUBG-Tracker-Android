@@ -1,6 +1,9 @@
 package wxc.pubgtracker;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,9 +16,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-public class PUBGManager {
+public class PUBGManager{
 
-    private static final String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwZTNmMDdjMC0xYjBlLTAxMzYtNjRjMi00ZmM4YmMzYjI1ZjkiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyOTM5NTkyLCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6ImxvY2F0aW9udHJhY2tlciJ9.b6zFXe2lCx4X1cC_k4E69bSvcZYVOq7I39IrqjcWStw";
+    public static final String defaultApiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwZTNmMDdjMC0xYjBlLTAxMzYtNjRjMi00ZmM4YmMzYjI1ZjkiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyOTM5NTkyLCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6ImxvY2F0aW9udHJhY2tlciJ9.b6zFXe2lCx4X1cC_k4E69bSvcZYVOq7I39IrqjcWStw";
+    public static String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwZTNmMDdjMC0xYjBlLTAxMzYtNjRjMi00ZmM4YmMzYjI1ZjkiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyOTM5NTkyLCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6ImxvY2F0aW9udHJhY2tlciJ9.b6zFXe2lCx4X1cC_k4E69bSvcZYVOq7I39IrqjcWStw";
     private static final String seasonName = "division.bro.official.2018-07";
     public  ArrayList<String> wxcGamertags = new ArrayList<>(Arrays.asList("Applepie2", "HeyChunk", "JellyFilledFun", "JP Argyle2"));
     public  ArrayList<String> wxcHTMLSafeGamertags = new ArrayList<>(Arrays.asList("Applepie2", "HeyChunk", "JellyFilledFun", "JP%20Argyle2"));
@@ -33,6 +37,12 @@ public class PUBGManager {
         players = new ArrayList<>();
         workingObject = new JSONObject();
         wxcStats = new ArrayList<>();
+    }
+
+    public void loadAPIKEY(Activity activity) {
+        SharedPreferences preferences;
+        preferences = activity.getSharedPreferences("userprefs", 0);
+        apiKey = preferences.getString("apiKey", defaultApiKey);
 
         // Get initial data from the API for all players
         refreshPlayerData();
@@ -379,6 +389,83 @@ public class PUBGManager {
                 }
             }
         }
+    }
+
+    public void CompileWXCStatsFromMatches() {
+
+        // Local reference
+        ArrayList<MatchModel> wxcPlayerStats;
+        wxcPlayerStats = new ArrayList<>(Arrays.asList(new MatchModel(), new MatchModel(),new MatchModel(),new MatchModel()));
+
+        // Add a single participant to each match item
+        for (int i = 0; i < wxcPlayerStats.size(); i++) {
+            wxcPlayerStats.get(i).addParticipant();
+        }
+
+        for (int i = 0; i < players.size(); i++) {
+
+            // Match counter used for averages
+            Integer totalWXCMatches = 0;
+
+            for (int j = 0; j < players.get(i).getMatches().size(); j++) {
+                // Find all matches for the current player which took place on the last thursday and have all wxc members as participants
+                if (players.get(i).getMatches().get(j).getDay() == null) { break; }
+                if (players.get(i).getMatches().get(j).getDay().equals(5)  &&
+                        players.get(i).getMatches().get(j).getParticipantList().size() == 4) {
+
+                    //Increment the match counter
+                    totalWXCMatches++;
+
+                    //Create local reference type for the wxc participant
+                    MatchModel.Participant wxcPlayer = wxcPlayerStats.get(i).getParticipantList().get(0);
+                    Integer playerIndex = 0;
+                    for (int k = 0; k < players.get(i).getMatches().get(j).getParticipantList().size(); k++) {
+                        if (players.get(i).getMatches().get(j).getParticipantList().get(k).getGamertag().equals(wxcGamertags.get(i))) {
+                            playerIndex = k;
+                        }
+                    }
+
+                    // Sum all the stats across the WXC matches
+                    wxcPlayer.setAssists(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getAssists() + wxcPlayer.getAssists());
+                    wxcPlayer.setBoosts(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getBoosts() + wxcPlayer.getBoosts());
+                    wxcPlayer.setDBNOs(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getDBNOs() + wxcPlayer.getDBNOs());
+                    wxcPlayer.setDamageDealt(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getDamageDealt() + wxcPlayer.getDamageDealt());
+                    wxcPlayer.setHeadshotKills(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getHeadshotKills() + wxcPlayer.getHeadshotKills());
+                    wxcPlayer.setHeals(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getHeals() + wxcPlayer.getHeals());
+                    wxcPlayer.setKills(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKills() + wxcPlayer.getKills());
+                    wxcPlayer.setRevives(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRevives() + wxcPlayer.getRevives());
+                    wxcPlayer.setRideDistance(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRideDistance() + wxcPlayer.getRideDistance());
+                    wxcPlayer.setRoadKills(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getRoadKills() + wxcPlayer.getRoadKills());
+                    wxcPlayer.setSwimDistance(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getSwimDistance() + wxcPlayer.getSwimDistance());
+                    wxcPlayer.setTeamKills(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getTeamKills() + wxcPlayer.getTeamKills());
+                    wxcPlayer.setTimeSurvived(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getTimeSurvived() + wxcPlayer.getTimeSurvived());
+                    wxcPlayer.setVehiclesDestroyed(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getVehiclesDestroyed() + wxcPlayer.getVehiclesDestroyed());
+                    wxcPlayer.setWalkDistance(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWalkDistance() + wxcPlayer.getWalkDistance());
+                    wxcPlayer.setWeaponsAcquired(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWeaponsAcquired() + wxcPlayer.getWeaponsAcquired());
+
+                    if (wxcPlayer.getKillStreak() < players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak()) {
+                        wxcPlayer.setKillStreak(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKillStreak());
+                    }
+                    if (wxcPlayer.getLongestKill() < players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill()) {
+                        wxcPlayer.setLongestKill(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getLongestKill());
+                    }
+                    if (wxcPlayer.getWinPlace() > players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWinPlace()) {
+                        wxcPlayer.setWinPlace(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getWinPlace());
+                    }
+                    if (wxcPlayer.getKillPlace() < players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKills()) {
+                        wxcPlayer.setKillPlace(players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKills());
+                    }
+                }
+
+                // Store the total number of matches in the "Day" integer as it is not used in the WXC model
+                wxcPlayerStats.get(i).setDay(totalWXCMatches);
+            }
+            // Increment the kill counter by 1 to offset the -1 initial value
+            wxcPlayerStats.get(i).getParticipantList().get(0).setKills(wxcPlayerStats.get(i).getParticipantList().get(0).getKills() + 1);
+        }
+
+        // Store the stats in the PUBG Manager
+        wxcStats = wxcPlayerStats;
     }
 
     public Date ConvertStringToDate(String dateTime) {

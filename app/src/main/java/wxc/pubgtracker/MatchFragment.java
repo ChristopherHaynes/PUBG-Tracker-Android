@@ -1,5 +1,6 @@
 package wxc.pubgtracker;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class MatchFragment extends Fragment {
     private static final String TAG = "MatchFragment";
@@ -30,6 +35,26 @@ public class MatchFragment extends Fragment {
         View view = inflater.inflate(R.layout.match_fragment, container, false);
 
         manager = MyProperties.getInstance().pubgManager;
+
+        // Set the default user to the saved user in the preferences
+        SharedPreferences preferences = getActivity().getSharedPreferences("userprefs", 0);
+        selectedGamertag = preferences.getString("defaultGamertag", "Applepie2");
+        Integer gamertagIndex = 0;
+        switch (selectedGamertag) {
+            case "Applepie2":
+            default:
+                gamertagIndex = 0;
+                break;
+            case "HeyChunk":
+                gamertagIndex = 1;
+                break;
+            case "JellyFilledFun":
+                gamertagIndex = 2;
+                break;
+            case "JP Argyle2":
+                gamertagIndex = 3;
+                break;
+        }
 
         // Init the buttons
         previousMatchBtn = view.findViewById(R.id.previousMatchButton);
@@ -70,6 +95,7 @@ public class MatchFragment extends Fragment {
         adapterGT.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGT.setAdapter(adapterGT);
         spinnerGT.setOnItemSelectedListener(new GamertagSpinner2Activity());
+        spinnerGT.setSelection(gamertagIndex);
 
         return view;
     }
@@ -294,8 +320,24 @@ public class MatchFragment extends Fragment {
             String[] splitDate = splitDateTime[0].split("-");
             reorderedDate = splitDate[2] + "-" + splitDate[1] + "-" + splitDate[0];
 
+            // Adjust the time for GMT / BST
+            String zone = "Europe/London";
+            TimeZone timeZone = TimeZone.getTimeZone(zone);
+            Date date = new Date(Integer.valueOf(splitDate[0]) - 1900, Integer.valueOf(splitDate[1]), Integer.valueOf(splitDate[2]));
+            String adjustedTime = splitDateTime[1].substring(0, splitDateTime[1].length() - 4);
+            if (TimeZone.getTimeZone(zone).inDaylightTime(date)) {
+                String[] splitTime = adjustedTime.split(":");
+                Integer adjustedHours = Integer.valueOf(splitTime[0]);
+                int plusHoursGMT = timeZone.getDSTSavings() / 3600000;
+                adjustedHours += plusHoursGMT;
+                if (adjustedHours > 23) { adjustedHours = 0; }
+                String adjustedHoursString = adjustedHours.toString();
+                if (adjustedHours == 0) { adjustedHoursString += "0"; }
+                adjustedTime = adjustedHoursString + ":" + splitTime[1];
+            }
+
             // Create the full date time string
-            dateTime = "Date: " + reorderedDate + "      Start Time: " + splitDateTime[1].substring(0, splitDateTime[1].length() - 4);
+            dateTime = "Date: " + reorderedDate + "      Start Time: " + adjustedTime;
         } else {
             dateTime = "DATE_TIME";
         }

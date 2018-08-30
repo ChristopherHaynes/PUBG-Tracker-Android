@@ -93,6 +93,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="180dp"
         android:text="Loading Player Data..."
+        android:textColor="@color/colorWhite"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"

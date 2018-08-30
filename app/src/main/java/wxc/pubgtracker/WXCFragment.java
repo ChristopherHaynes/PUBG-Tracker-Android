@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -60,10 +62,10 @@ public class WXCFragment extends Fragment {
     public void SetTeamStats (View view) {
 
         // Define local references to the WXC team stats
-        MatchModel.Participant apple = wxcPlayerStats.get(0).getParticipantList().get(0);
-        MatchModel.Participant chunk = wxcPlayerStats.get(1).getParticipantList().get(0);
-        MatchModel.Participant jelly = wxcPlayerStats.get(2).getParticipantList().get(0);
-        MatchModel.Participant jp = wxcPlayerStats.get(3).getParticipantList().get(0);
+        MatchModel.Participant apple = manager.wxcStats.get(0).getParticipantList().get(0);
+        MatchModel.Participant chunk = manager.wxcStats.get(1).getParticipantList().get(0);
+        MatchModel.Participant jelly = manager.wxcStats.get(2).getParticipantList().get(0);
+        MatchModel.Participant jp = manager.wxcStats.get(3).getParticipantList().get(0);
 
         // Gather all the text views for the team stats
         TextView killsText = view.getRootView().findViewById(R.id.killsWXCValue);
@@ -202,10 +204,11 @@ public class WXCFragment extends Fragment {
         // Make sure the manager is updated
         manager = MyProperties.getInstance().pubgManager;
 
-        // Match counter used for averages
-        Integer totalWXCMatches = 0;
-
         for (int i = 0; i < manager.players.size(); i++) {
+
+            // Match counter used for averages
+            Integer totalWXCMatches = 0;
+
             for (int j = 0; j < manager.players.get(i).getMatches().size(); j++) {
                 // Find all matches for the current player which took place on the last thursday and have all wxc members as participants
                 if (manager.players.get(i).getMatches().get(j).getDay() == null) { break; }
@@ -269,18 +272,12 @@ public class WXCFragment extends Fragment {
                         wxcPlayer.setKillPlace(manager.players.get(i).getMatches().get(j).getParticipantList().get(playerIndex).getKills());
                     }
                 }
-
-                // Break if another day is discovered when wxc stats, stored for this player, are not null
-                if (manager.players.get(i).getMatches().get(j).getDay() != 5 &&
-                        wxcPlayerStats.get(i).getParticipantList().get(0).getKills() != -1) {
-                    wxcPlayerStats.get(i).getParticipantList().get(0).setKills(wxcPlayerStats.get(i).getParticipantList().get(0).getKills() + 1);
-                    // Store the total number of matches in the "Day" integer as it is not used in the WXC model
-                    wxcPlayerStats.get(i).setDay(totalWXCMatches);
-                    break;
-                }
+                // Store the total number of matches in the "Day" integer as it is not used in the WXC model
+                wxcPlayerStats.get(i).setDay(totalWXCMatches);
             }
+            // Increment the kill counter by 1 to offset the -1 initial value
+            wxcPlayerStats.get(i).getParticipantList().get(0).setKills(wxcPlayerStats.get(i).getParticipantList().get(0).getKills() + 1);
         }
-
         // Store the stats in the PUBG Manager
         manager.wxcStats = wxcPlayerStats;
     }
@@ -499,6 +496,7 @@ public class WXCFragment extends Fragment {
         ArrayList<Integer> playerPoints = new ArrayList<>(Arrays.asList(0, 0, 0, 0));
         for (int i = 0; i < playerPositions.size(); i++) {
             playerPoints.set(i, 5 - playerPositions.get(i));
+            if (playerPoints.get(i) == 4) { playerPoints.set(i, 5); }
         }
         return playerPoints;
     }
