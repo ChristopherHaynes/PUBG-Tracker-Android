@@ -1,18 +1,18 @@
 package wxc.pubgtracker;
 
-import android.provider.Telephony;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MatchModel {
+public class MatchModel implements Serializable{
 
-    private String matchID;
-    private String gameMode;        // Solo, Duo, Squad
-    private String matchDateTime;   // Date and time that the match started
-    private Date date;
-    private Integer day;            // 1-Sun, 2-Mon, 3-Tue, 4-Wed, 5-Thur, 6-Fri, 7-Sat
-    private String mapName;
+    private String matchID = "";
+    private String gameMode = "";        // Solo, Duo, Squad
+    private String matchDateTime = "";   // Date and time that the match started
+    private String telemetryURL = "";    // URL to reach the telemetry data for this match
+    private String mapName = "";
+    private Date date = new Date();
+    private Integer day = 0;            // 1-Sun, 2-Mon, 3-Tue, 4-Wed, 5-Thur, 6-Fri, 7-Sat
 
     private ArrayList<Participant> participantList;  // Holds the participant data for all WXC members
 
@@ -69,9 +69,11 @@ public class MatchModel {
         return participantList;
     }
 
-    public void setParticipantList(ArrayList<Participant> participantList) {
-        this.participantList = participantList;
-    }
+    public void setParticipantList(ArrayList<Participant> participantList) { this.participantList = participantList; }
+
+    public String getTelemetryURL() { return telemetryURL; }
+
+    public void setTelemetryURL(String telemetryURL) { this.telemetryURL = telemetryURL; }
 
     // Adds an empty participant to the match list
     public void addParticipant() {

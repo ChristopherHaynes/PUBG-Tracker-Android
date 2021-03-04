@@ -20,7 +20,7 @@ public class PUBGManager{
 
     public static final String defaultApiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwZTNmMDdjMC0xYjBlLTAxMzYtNjRjMi00ZmM4YmMzYjI1ZjkiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyOTM5NTkyLCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6ImxvY2F0aW9udHJhY2tlciJ9.b6zFXe2lCx4X1cC_k4E69bSvcZYVOq7I39IrqjcWStw";
     public static String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwZTNmMDdjMC0xYjBlLTAxMzYtNjRjMi00ZmM4YmMzYjI1ZjkiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIyOTM5NTkyLCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6ImxvY2F0aW9udHJhY2tlciJ9.b6zFXe2lCx4X1cC_k4E69bSvcZYVOq7I39IrqjcWStw";
-    private static final String seasonName = "division.bro.official.2018-07";
+    private static final String seasonName = "division.bro.official.2018-08";
     public  ArrayList<String> wxcGamertags = new ArrayList<>(Arrays.asList("Applepie2", "HeyChunk", "JellyFilledFun", "JP Argyle2"));
     public  ArrayList<String> wxcHTMLSafeGamertags = new ArrayList<>(Arrays.asList("Applepie2", "HeyChunk", "JellyFilledFun", "JP%20Argyle2"));
     public  ArrayList<String> gameModes = new ArrayList<>(Arrays.asList("Solo", "Duo", "Squad"));
@@ -111,13 +111,13 @@ public class PUBGManager{
             }
 
             // Gather all the matchIDs and set them to the player object
-            JSONArray testArray;
+            JSONArray matchesArray;
             try {
-                testArray = result.getJSONArray("data").getJSONObject(0).getJSONObject("relationships").getJSONObject("matches").getJSONArray("data");
-                for (int i = 0; i < testArray.length(); i++)
+                matchesArray = result.getJSONArray("data").getJSONObject(0).getJSONObject("relationships").getJSONObject("matches").getJSONArray("data");
+                for (int i = 0; i < matchesArray.length(); i++)
                 {
-                    newPlayer.addMatches(testArray.getJSONObject(i).getString("id"));
-                    new getMatchByID().execute(testArray.getJSONObject(i).getString("id"));
+                    newPlayer.addMatches(matchesArray.getJSONObject(i).getString("id"));
+                    new getMatchByID().execute(matchesArray.getJSONObject(i).getString("id"));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -321,6 +321,14 @@ public class PUBGManager{
                 newMatch.setGameMode(result.getJSONObject("data").getJSONObject("attributes").getString("gameMode"));
                 newMatch.setMapName(result.getJSONObject("data").getJSONObject("attributes").getString("mapName"));
                 newMatch.setMatchDateTime(result.getJSONObject("data").getJSONObject("attributes").getString("createdAt"));
+                String telemetryID = (result.getJSONObject("data").getJSONObject("relationships").getJSONObject("assets").getJSONArray("data").getJSONObject(0).getString("id"));
+                JSONArray included = result.getJSONArray("included");
+                for (int i = 0; i < included.length(); i++) {
+                    if (included.getJSONObject(i).getString("id").equals(telemetryID)) {
+                        newMatch.setTelemetryURL(included.getJSONObject(i).getJSONObject("attributes").getString("URL"));
+                        break;
+                    }
+                }
                 newMatch.setDate(ConvertStringToDate(newMatch.getMatchDateTime()));
                 newMatch.setDay(GetDayFromDate(newMatch.getDate()));
             } catch (JSONException e) {
@@ -471,12 +479,12 @@ public class PUBGManager{
     public Date ConvertStringToDate(String dateTime) {
 
         Date matchDate = null;
-        String date = "DATE";
+        String date;
 
         if (dateTime.length() > 1) {
             date = dateTime.split("T")[0];
-            Integer year = Integer.valueOf(date.split("-")[0]) - 1;
-            Integer month = Integer.valueOf(date.split("-")[1]) - 1;
+            Integer year = Integer.valueOf(date.split("-")[0]) - 1900;
+            Integer month = Integer.valueOf(date.split("-")[1]) -  1;
             Integer day = Integer.valueOf(date.split("-")[2]);
             matchDate = new Date(year, month, day);
         }

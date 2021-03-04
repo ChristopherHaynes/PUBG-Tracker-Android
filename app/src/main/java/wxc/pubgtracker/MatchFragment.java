@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -152,133 +153,137 @@ public class MatchFragment extends Fragment {
         for (int i = 0; i < manager.players.size(); i++ ) {
             if (manager.players.get(i).getGamertag().equals(selectedGamertag)) {
                 // Gather the match stats for the player and game mode and current match value
-                MatchModel stats = manager.players.get(i).getMatches().get(selectedMatch);
+                ArrayList<MatchModel> models = manager.players.get(i).getMatches();
 
-                // Set the match details
-                String statsMapName = stats.getMapName(); if (statsMapName == null) { statsMapName = "MAP-NAME"; }
-                String statsGameMode = stats.getGameMode(); if (statsGameMode == null) { statsGameMode = "GAME_MODE"; }
-                String statsDateTime = stats.getMatchDateTime(); if (statsDateTime == null) { statsDateTime = "X"; }
+                // Ensure there are some matches before continuing
+                if (models.size() > 0) {
+                MatchModel stats = models.get(selectedMatch);
 
-                matchDetailsValue.setText(GetMatchDetailsString(statsMapName, statsGameMode));
-                dateTimeValue.setText(GetDateTimeString(statsDateTime));
+                    // Set the match details
+                    String statsMapName = stats.getMapName(); if (statsMapName == null) { statsMapName = "MAP-NAME"; }
+                    String statsGameMode = stats.getGameMode(); if (statsGameMode == null) { statsGameMode = "GAME_MODE"; }
+                    String statsDateTime = stats.getMatchDateTime(); if (statsDateTime == null) { statsDateTime = "X"; }
 
-                // Find the participant that matches the selected gamertag
-                for (int j = 0; j < stats.getParticipantList().size(); j++) {
-                    if(stats.getParticipantList().get(j).getGamertag().equals(selectedGamertag)) {
+                    matchDetailsValue.setText(GetMatchDetailsString(statsMapName, statsGameMode));
+                    dateTimeValue.setText(GetDateTimeString(statsDateTime));
 
-                        // Set the Placing table
-                        Integer winPlace = stats.getParticipantList().get(j).getWinPlace();
-                        Integer killPlace = stats.getParticipantList().get(j).getKillPlace();
-                        switch (winPlace){
-                            case 1:
-                                winPlaceValue.setBackgroundResource(R.color.colorGold);
-                                break;
-                            case 2:
-                                winPlaceValue.setBackgroundResource(R.color.colorSilver);
-                                break;
-                            case 3:
-                                winPlaceValue.setBackgroundResource(R.color.colorBronze);
-                                break;
-                            default:
-                                winPlaceValue.setBackgroundResource(R.color.colorPrimary);
-                                break;
+                    // Find the participant that matches the selected gamertag
+                    for (int j = 0; j < stats.getParticipantList().size(); j++) {
+                        if (stats.getParticipantList().get(j).getGamertag().equals(selectedGamertag)) {
+
+                            // Set the Placing table
+                            Integer winPlace = stats.getParticipantList().get(j).getWinPlace();
+                            Integer killPlace = stats.getParticipantList().get(j).getKillPlace();
+                            switch (winPlace) {
+                                case 1:
+                                    winPlaceValue.setBackgroundResource(R.color.colorGold);
+                                    break;
+                                case 2:
+                                    winPlaceValue.setBackgroundResource(R.color.colorSilver);
+                                    break;
+                                case 3:
+                                    winPlaceValue.setBackgroundResource(R.color.colorBronze);
+                                    break;
+                                default:
+                                    winPlaceValue.setBackgroundResource(R.color.colorPrimary);
+                                    break;
+                            }
+                            String winPlaceString = winPlace.toString();
+                            switch (winPlaceString.substring(winPlaceString.length() - 1)) {
+                                case "1":
+                                    winPlaceString = winPlaceString + "st";
+                                    break;
+                                case "2":
+                                    winPlaceString = winPlaceString + "nd";
+                                    break;
+                                case "3":
+                                    winPlaceString = winPlaceString + "rd";
+                                    break;
+                                case "4":
+                                case "5":
+                                case "6":
+                                case "7":
+                                case "8":
+                                case "9":
+                                case "0":
+                                    winPlaceString = winPlaceString + "th";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            switch (killPlace) {
+                                case 1:
+                                    killPlaceValue.setBackgroundResource(R.color.colorGold);
+                                    break;
+                                case 2:
+                                    killPlaceValue.setBackgroundResource(R.color.colorSilver);
+                                    break;
+                                case 3:
+                                    killPlaceValue.setBackgroundResource(R.color.colorBronze);
+                                    break;
+                                default:
+                                    killPlaceValue.setBackgroundResource(R.color.colorPrimary);
+                                    break;
+                            }
+                            String killPlaceString = killPlace.toString();
+                            switch (killPlaceString.substring(killPlaceString.length() - 1)) {
+                                case "1":
+                                    killPlaceString = killPlaceString + "st";
+                                    break;
+                                case "2":
+                                    killPlaceString = killPlaceString + "nd";
+                                    break;
+                                case "3":
+                                    killPlaceString = killPlaceString + "rd";
+                                    break;
+                                case "4":
+                                case "5":
+                                case "6":
+                                case "7":
+                                case "8":
+                                case "9":
+                                case "0":
+                                    killPlaceString = killPlaceString + "th";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            winPlaceValue.setText(winPlaceString);
+                            killPlaceValue.setText(killPlaceString);
+
+                            // Set the Points table
+                            winPointsValue.setText(Integer.toString(stats.getParticipantList().get(j).getWinPoints()));
+                            killPointsValue.setText(Integer.toString(stats.getParticipantList().get(j).getKillPoints()));
+
+                            // Set the Points Change table
+                            winPointsChangeValue.setText(Double.toString(stats.getParticipantList().get(j).getWinPointsDelta()).substring(0,
+                                    Math.min(Double.toString(stats.getParticipantList().get(j).getWinPointsDelta()).length(), 5)));
+                            killPointsChangeValue.setText(Double.toString(stats.getParticipantList().get(j).getKillPointsDelta()).substring(0,
+                                    Math.min(Double.toString(stats.getParticipantList().get(j).getKillPointsDelta()).length(), 5)));
+
+                            // Set the Kills table
+                            killsMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getKills()));
+                            dbnosMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getDBNOs()));
+                            assistsMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getAssists()));
+
+                            // Set the Damage table
+                            damageDealtValue.setText(Double.toString(stats.getParticipantList().get(j).getDamageDealt()).substring(0,
+                                    Math.min(Double.toString(stats.getParticipantList().get(j).getDamageDealt()).length(), 6)));
+                            longestKillMatchValue.setText(Double.toString(stats.getParticipantList().get(j).getLongestKill()).substring(0,
+                                    Math.min(Double.toString(stats.getParticipantList().get(j).getLongestKill()).length(), 5)) + " m");
+
+                            // Set the Heals table
+                            healsMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getHeals()));
+                            boostsMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getBoosts()));
+                            revivesMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getRevives()));
+
+                            // Set the Distance table
+                            ranMatchValue.setText(Double.toString(stats.getParticipantList().get(j).getWalkDistance()).substring(0, Math.min(Double.toString(stats.getParticipantList().get(j).getWalkDistance()).length(), 4)) + " m");
+                            swamMatchValue.setText(Double.toString(stats.getParticipantList().get(j).getSwimDistance()).substring(0, Math.min(Double.toString(stats.getParticipantList().get(j).getSwimDistance()).length(), 4)) + " m");
+                            rodeMatchValue.setText(Double.toString(stats.getParticipantList().get(j).getRideDistance()).substring(0, Math.min(Double.toString(stats.getParticipantList().get(j).getRideDistance()).length(), 4)) + " m");
                         }
-                        String winPlaceString = winPlace.toString();
-                        switch(winPlaceString.substring(winPlaceString.length() - 1)) {
-                            case "1":
-                                winPlaceString = winPlaceString + "st";
-                                break;
-                            case "2":
-                                winPlaceString = winPlaceString + "nd";
-                                break;
-                            case "3":
-                                winPlaceString = winPlaceString + "rd";
-                                break;
-                            case "4":
-                            case "5":
-                            case "6":
-                            case "7":
-                            case "8":
-                            case "9":
-                            case "0":
-                                winPlaceString = winPlaceString + "th";
-                                break;
-                            default:
-                                break;
-                        }
-                        switch (killPlace) {
-                            case 1:
-                                killPlaceValue.setBackgroundResource(R.color.colorGold);
-                                break;
-                            case 2:
-                                killPlaceValue.setBackgroundResource(R.color.colorSilver);
-                                break;
-                            case 3:
-                                killPlaceValue.setBackgroundResource(R.color.colorBronze);
-                                break;
-                            default:
-                                killPlaceValue.setBackgroundResource(R.color.colorPrimary);
-                                break;
-                        }
-                        String killPlaceString = killPlace.toString();
-                        switch(killPlaceString.substring(killPlaceString.length() - 1)) {
-                            case "1":
-                                killPlaceString = killPlaceString + "st";
-                                break;
-                            case "2":
-                                killPlaceString = killPlaceString + "nd";
-                                break;
-                            case "3":
-                                killPlaceString = killPlaceString + "rd";
-                                break;
-                            case "4":
-                            case "5":
-                            case "6":
-                            case "7":
-                            case "8":
-                            case "9":
-                            case "0":
-                                killPlaceString = killPlaceString + "th";
-                                break;
-                            default:
-                                break;
-                        }
-                        winPlaceValue.setText(winPlaceString);
-                        killPlaceValue.setText(killPlaceString);
-
-                        // Set the Points table
-                        winPointsValue.setText(Integer.toString(stats.getParticipantList().get(j).getWinPoints()));
-                        killPointsValue.setText(Integer.toString(stats.getParticipantList().get(j).getKillPoints()));
-
-                        // Set the Points Change table
-                        winPointsChangeValue.setText(Double.toString(stats.getParticipantList().get(j).getWinPointsDelta()).substring(0,
-                                Math.min(Double.toString(stats.getParticipantList().get(j).getWinPointsDelta()).length(), 5)));
-                        killPointsChangeValue.setText(Double.toString(stats.getParticipantList().get(j).getKillPointsDelta()).substring(0,
-                                Math.min(Double.toString(stats.getParticipantList().get(j).getKillPointsDelta()).length(), 5)));
-
-                        // Set the Kills table
-                        killsMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getKills()));
-                        dbnosMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getDBNOs()));
-                        assistsMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getAssists()));
-
-                        // Set the Damage table
-                        damageDealtValue.setText(Double.toString(stats.getParticipantList().get(j).getDamageDealt()).substring(0,
-                                Math.min(Double.toString(stats.getParticipantList().get(j).getDamageDealt()).length(), 6)));
-                        longestKillMatchValue.setText(Double.toString(stats.getParticipantList().get(j).getLongestKill()).substring(0,
-                                Math.min(Double.toString(stats.getParticipantList().get(j).getLongestKill()).length(), 5)) + " m");
-
-                        // Set the Heals table
-                        healsMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getHeals()));
-                        boostsMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getBoosts()));
-                        revivesMatchValue.setText(Integer.toString(stats.getParticipantList().get(j).getRevives()));
-
-                        // Set the Distance table
-                        ranMatchValue.setText(Double.toString(stats.getParticipantList().get(j).getWalkDistance()).substring(0, Math.min(Double.toString(stats.getParticipantList().get(j).getWalkDistance()).length(), 4)) + " m");
-                        swamMatchValue.setText(Double.toString(stats.getParticipantList().get(j).getSwimDistance()).substring(0, Math.min(Double.toString(stats.getParticipantList().get(j).getSwimDistance()).length(), 4)) + " m");
-                        rodeMatchValue.setText(Double.toString(stats.getParticipantList().get(j).getRideDistance()).substring(0, Math.min(Double.toString(stats.getParticipantList().get(j).getRideDistance()).length(), 4)) + " m");
                     }
                 }
-
             }
         }
     }

@@ -63,6 +63,78 @@
 
             <TableLayout
 
+                android:id="@+id/tableLayout9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="524dp"
+                android:background="@color/colorOrangeLight"
+                android:gravity="center"
+                android:stretchColumns="*"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerStatsTitle">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrangeLight"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/attackerText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="[Attacker] dealt"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/holo_green_light"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/damageAndTypeText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="[Damage] [Type]"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/victimText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="to [Victim]"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+
                 android:id="@+id/tableLayout8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -87,47 +159,6 @@
 
                     >
 
-                    <TextView
-                        android:id="@+id/ranText"
-                        android:layout_width="47dp"
-                        android:layout_height="match_parent"
-                        android:layout_column="0"
-                        android:layout_margin="1dp"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center"
-                        android:text="Ran"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/swamText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_column="1"
-                        android:layout_margin="1dp"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center"
-                        android:text="Swam"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/rodeText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_column="2"
-                        android:layout_margin="1dp"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center"
-                        android:text="Rode"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
                 </TableRow>
 
 
